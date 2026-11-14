@@ -1,4 +1,4 @@
-# TeaRoad Backend
+# TeaRoad
 
 Node.js API for the TeaRoad storefront. The frontend repository is egorychbog/TeaRoad; Docker Compose builds this service from this repository.
 
