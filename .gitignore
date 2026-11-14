@@ -1,9 +1,5 @@
+.env*
+*.log
 node_modules/
 dist/
-.vercel/
-.env*
-!.env.example
-deploy/certs/
-deploy/.env
-*.log
 .DS_Store
