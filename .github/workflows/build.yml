@@ -1,0 +1,27 @@
+name: TeaRoad deployment build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-app-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker/setup-buildx-action@v4
+      - uses: docker/build-push-action@v7
+        with:
+          context: https://github.com/egorychbog/TeaRoad.git#main
+          file: Dockerfile
+          push: false
+          tags: tearoad-app:ci
+          build-args: |
+            VITE_SUPABASE_URL=${{ vars.VITE_SUPABASE_URL }}
+            VITE_SUPABASE_PUBLISHABLE_KEY=${{ vars.VITE_SUPABASE_PUBLISHABLE_KEY }}
+            VITE_SITE_URL=https://tearoad.localhost

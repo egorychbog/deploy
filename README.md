@@ -1,13 +1,5 @@
 # TeaRoad
 
-Node.js API for the TeaRoad storefront. The frontend repository is egorychbog/TeaRoad; Docker Compose builds this service from this repository.
+This repository contains deployment configuration only. The application source is in [egorychbog/TeaRoad](https://github.com/egorychbog/TeaRoad); the deployment uses two containers, `app` and `nginx`. Supabase is the external database and authentication service.
 
-## API
-
-- GET /api/health — service health.
-- GET /api/products — fallback demo catalog used when Supabase is unavailable.
-
-## Run
-
-    docker build -t tearoad-backend .
-    docker run --rm -p 3000:3000 tearoad-backend
+See [deploy/README.md](deploy/README.md) for the practical-work report and local runbook.
