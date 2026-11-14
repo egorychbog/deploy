@@ -113,7 +113,8 @@ Workflow выполняет CI-сборку и не публикует image в 
 | Ошибка | Причина и решение |
 | --- | --- |
 | `Cannot connect to the Docker daemon` | Docker Desktop выключен или Engine ещё запускается. Запустите Docker Desktop, дождитесь готовности Engine и повторите Compose-команду. |
-| Браузер не доверяет локальному сертификату | Проверьте `mkcert -install`, наличие обоих файлов сертификата и совпадение имени `tearoad.localhost`. |
+| Docker Hub вернул `401` для базовых образов | Сборка использует публичные официальные образы из Amazon ECR Public mirror (`public.ecr.aws/docker/library/...`), без Docker Hub credentials. |
+| Сертификат не совпадает с доменом | Повторно выпустите локальный сертификат командой `mkcert` из раздела HTTPS; SAN должен содержать `tearoad.localhost`. |
 | `app` или `nginx` не становится `healthy` | Проверьте `docker compose logs app` и `docker compose logs nginx`, локальный `.env` и сертификаты в `deploy/certs/`. |
 | Данные Supabase не загружаются | Проверьте URL и publishable key, а также запрос/ответ в DevTools → Network. Не добавляйте secret key в клиентскую сборку. |
 
