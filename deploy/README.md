@@ -84,6 +84,10 @@ docker compose --env-file deploy/.env -f deploy/docker-compose.yml logs nginx
 docker compose --env-file deploy/.env -f deploy/docker-compose.yml down
 ```
 
+## Фактическая проверка
+
+Проверка локального стенда: `docker compose ps` показал два сервиса, оба `healthy`; host-порты опубликованы только у `nginx`. Запрос `curl.exe --head https://tearoad.localhost` вернул `HTTP/1.1 200 OK` с `Server: nginx`. Отдельная проверка публичного каталога Supabase `GET /rest/v1/products?select=id&is_active=eq.true&limit=1` вернула HTTP `200` и одну запись.
+
 ## CI/CD
 
 Workflow [`.github/workflows/build.yml`](../.github/workflows/build.yml) собирает Docker image фронтенда для push в `main`, pull request в `main` и ручного запуска (`workflow_dispatch`). Контекст сборки — удалённая ветка `main` репозитория `egorychbog/TeaRoad`; сам репозиторий `deploy` содержит workflow и конфигурацию, но не код приложения. Так проверяется, что конфигурация развертывания может собрать текущий фронтенд.
@@ -92,7 +96,7 @@ Workflow выполняет CI-сборку и не публикует image в 
 
 ## Материалы для сдачи
 
-Сохраните фактические скриншоты в `deploy/screenshots/` и вставьте их в отчёт перед сдачей:
+Сохраните фактические скриншоты в `deploy/screenshots/` и вставьте их в отчёт перед сдачей. Каталог подготовлен; визуальные скриншоты в эту версию ещё не добавлены.
 
 | Скриншот | Что должно быть видно |
 | --- | --- |
